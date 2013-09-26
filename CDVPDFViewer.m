@@ -47,8 +47,21 @@
     
 	//NSArray *pdfs = [[NSBundle mainBundle] pathsForResourcesOfType:@"pdf" inDirectory:nil];
     NSLog(@"%@",[command.arguments objectAtIndex:0]);
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:(@"%@",[command.arguments objectAtIndex:0]) ofType:@"pdf"];
- 
+    	
+
+    // Old commented
+
+    // NSString *filePath = [[NSBundle mainBundle] pathForResource:(@"%@",[command.arguments objectAtIndex:0]) ofType:@"pdf"];
+ 	
+
+ 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath =  [documentsDirectory stringByAppendingPathComponent:(@"%@",[command.arguments objectAtIndex:0])];
+    
+
+
+
+
     //	NSString *filePath = [pdfs lastObject]; assert(filePath != nil); // Path to last PDF file
     
 	ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
